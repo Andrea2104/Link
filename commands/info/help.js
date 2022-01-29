@@ -34,7 +34,8 @@ module.exports = {
         });
 
         const embed = new MessageEmbed()
-        .setDescription("Choose a category from the list.");
+        .setDescription("Choose a category from the list.")
+        .setColor("#066dad");
 
         const components = (state) => [
             new MessageActionRow().addComponents(
