@@ -75,7 +75,7 @@ module.exports = {
                 const categoryEmbed = new MessageEmbed()
                 .setTitle(`${directory} commands`)
                 .setDescription(`List of Commands`)
-                .setColor()
+                .setColor("#066dad")
                 .addFields(
                     category.commands.map((cmd) => {
                         return{
