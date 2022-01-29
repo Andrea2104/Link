@@ -6,7 +6,7 @@ module.exports = {
     name: "weather",
     description: "shows the current weather in a specified location",
 
-    async execute (message, args) {
+    async execute (client, message, args) {
         weather.find({search: args.join(" "), degreeType: `F`}, function (error, result) {
             if(error) return message.channel.send(error);
             if(!args[0]) return message.channel.send('Please specify a location!')

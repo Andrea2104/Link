@@ -3,7 +3,7 @@ const discord = require('discord.js');
 
 module.exports= {
     name : 'translate',
-    async execute(message, args) {
+    async execute(client, message, args) {
         const query = args.join(" ");
         if (!query) return message.reply("Please specify a text to translate");
 

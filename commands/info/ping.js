@@ -4,7 +4,7 @@ module.exports = {
     name: "ping", //command name, e.g. of what you would send in chat: .ping
     description: "ping command",
 
-    async execute (message, args) {
+    async execute (client, message, args) {
 
         const ping = new Discord.MessageEmbed()
         .setTitle('Bot Ping')

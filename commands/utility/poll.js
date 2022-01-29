@@ -4,7 +4,7 @@ module.exports = {
     name: "poll",
     description: "starts a poll",
 
-    async execute (message, args) {
+    async execute (client, message, args) {
         let channelID = message.mentions.channels.first()
         let theDescription = args.slice(1).join(" ")
         const member = message.mentions.members.last() || message.guild.members.cache.get(args) || message.member;

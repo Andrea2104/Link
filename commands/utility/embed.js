@@ -4,7 +4,7 @@ module.exports = {
     name: "embed",
     description: "sends an embed message through the bot",
     
-    async execute(message, args) {
+    async execute(client, message, args) {
         const member = message.mentions.members.last() || message.guild.members.cache.get(args) || message.member;  
         oy = args;
         channelid = oy.splice(0,1).join(` `);

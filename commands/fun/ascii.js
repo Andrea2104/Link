@@ -4,7 +4,7 @@ module.exports = {
     name: "ascii",
     description: "Converts text to ascii",
 
-    async execute (message, args){
+    async execute (client, message, args){
         if(!args[0]) return message.channel.send('Please provide some text');
 
         msg = args.join(" ");

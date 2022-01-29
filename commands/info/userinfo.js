@@ -20,7 +20,7 @@ const flags = {
 module.exports =  {
     name: "userinfo",
     description: "shows info of a user",
-	async execute(message, args) {
+	async execute(client, message, args) {
 		const member = message.mentions.members.last() || message.guild.members.cache.get(args) || message.member;
 		
 		const userFlags = member.user.flags.toArray();

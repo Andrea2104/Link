@@ -2,7 +2,7 @@ module.exports = {
 	name : "isolate",
 	cooldown : 5,
 
-	async execute(message, args){
+	async execute(client, message, args){
 
 	    let GuildMember;
         const member = message.mentions.members.last() || message.guild.members.cache.get(args) || message.member;

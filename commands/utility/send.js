@@ -1,8 +1,8 @@
 module.exports = {
     name: "send",
-    description: "sends a messaeg anonymously through bot",
+    description: "sends a message through bot",
 
-    async execute(message, args) {
+    async execute(client, message, args) {
         oy = args;
         channelid = oy.splice(0,1).join(` `);
         console.log(channelid)

@@ -4,7 +4,7 @@ module.exports = {
     name: "roleinfo",
     description: "gives desciption of a role",
    
-    async execute( message, args)  { 
+    async execute( client, message, args)  { 
     
  
     let role; 

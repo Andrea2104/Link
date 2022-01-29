@@ -1,41 +1,98 @@
-/*
-const Discord = require("discord.js")
-const fs = require("fs")
-const pagination = require("discord.js-pagination")
+const {
+    Client,
+    MessageEmbed,
+    Message,
+    MessageActionRow,
+    MessageSelectMenu
+} = require("discord.js");
+
 module.exports = {
     name: "help",
-    description: "help command",
+    description: "shows bot information",
 
-    async execute(message, args){
-        const commandFolders = fs.readdirSync('/app/commands');
-        const pages = [commandFolders
-        ]
+    async execute(client, message, args) {
+        const directories = [...new Set(client.commands.map(cmd => cmd.directory)), ];
+        
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+          }
 
-            for (const folder of commandFolders) {
+        const categories = directories.map((dir) => {
+            const getCommands = client.commands.filter((cmd) => cmd.directory === dir
+            ).map(cmd => {
+                return{
+                    name: cmd.name || "Name undefined",
+                    description: cmd.description || "Description undefined",
+                };
+            });
 
-                const commandFiles = fs.readdirSync(`/app/commands/${folder}`).filter(file => file.endsWith('.js'));
-                fl = folder
-                hmm = fl.charAt(0).toUpperCase() + fl.slice(1);
-                let helpembed = new Discord.MessageEmbed()
-                .setColor(`RANDOM`)
-                .setAuthor(`Link's Commands:`,message.author.displayAvatarURL({ size: 4096, size: 256 }))
+        return {
+            directory: capitalizeFirstLetter(dir),
+            commands: getCommands,
+        }
 
-                .setTitle(`**${hmm} Commands:**`)
-                for (const file of commandFiles) {
+        });
 
-                    const command = require(`/app/commands/${folder}/${file}`);
-                    helpembed.addField(`${command.name}`,`${command.description}`,true)
-                }
-                pages.push(helpembed);
-            }
-            const emojiList = ["⏪", "⏩"]
+        const embed = new MessageEmbed()
+        .setDescription("Choose a category from the list.");
 
-        const timeout = '600000';
+        const components = (state) => [
+            new MessageActionRow().addComponents(
+                new MessageSelectMenu()
+                .setCustomId("help-menu")
+                .setPlaceholder("Please select a category")
+                .setDisabled(state)
+                .addOptions(
+                    categories.map((cmd) => {
+                        return{
+                            label: cmd.directory,
+                            value: cmd.directory.toLowerCase(),
+                            description: `Commands in ${cmd.directory} category`,
+                            
+                        };
+                    })
+                )
+            )
+        ];
+   
+        const initialMessage = await message.channel.send({
+            embeds: [embed],
+            components: components(false),
+        });
 
-            return  pagination(message, pages, emojiList, timeout)
+        const filter = (interaction) => interaction.user.id === message.author.id;
+
+        const collector = message.channel.createMessageComponentCollector({
+            filter, 
+            componentType: 'SELECT_MENU', 
+            //time: 5000
+        });
+
+            collector.on('collect', (interaction) => {
+                const [directory] = interaction.values;
+                const category = categories.find(x => x.directory.toLowerCase() === directory);
+
+                const categoryEmbed = new MessageEmbed()
+                .setTitle(`${directory} commands`)
+                .setDescription(`List of Commands`)
+                .setColor()
+                .addFields(
+                    category.commands.map((cmd) => {
+                        return{
+                            name: `\`${cmd.name}\``,
+                            value: cmd.description,
+                            inline: true
+                        }
+                    })
+                )
+
+                interaction.update({embeds: [categoryEmbed]});
+            });
+
+            collector.on('end', () => {
+                initialMessage.edit( {components: components(true)} )
+            })
     }
-}
-*/
 
 
-       
+};

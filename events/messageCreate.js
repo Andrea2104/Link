@@ -20,7 +20,7 @@ client.on('messageCreate', async(message) => {
     if(client.commands.has(cmd))
     {
         try {
-            await client.commands.get(`${cmd}`).execute(message,args);
+            await client.commands.get(`${cmd}`).execute(client, message,args);
         }
         catch (err){
             console.log(err);

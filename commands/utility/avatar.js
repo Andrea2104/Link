@@ -6,7 +6,7 @@ module.exports = {
     aliases: ["pfp", "av", "icon"],
     cooldown: 5,
     
-    async execute(message, args){
+    async execute(client, message, args){
         let user;
         const member = message.mentions.members.last() || message.guild.members.cache.get(args) || message.member;
         if (message.mentions.users.first()){
