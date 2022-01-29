@@ -1,5 +1,5 @@
 
-//const keepAlive = require('./server.js');
+const keepAlive = require('./server.js');
 
 
 const Discord = require('discord.js');
@@ -30,7 +30,7 @@ for(const file of commandFiles){
     client.commands.set(command.name, command);
 }}
  
-const got = require("got");
+//const got = require("got");
 
 
 client.once('ready', async() => {
@@ -211,6 +211,6 @@ if (commandName === "userinfo") {
 	}
 })
 
-//keepAlive(); 
+keepAlive(); 
 client.login(process.env.BOTTOKEN);
 
