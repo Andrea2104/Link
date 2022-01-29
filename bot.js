@@ -1,5 +1,5 @@
 
-const keepAlive = require('./server.js');
+//const keepAlive = require('./server.js');
 
 
 const Discord = require('discord.js');
@@ -211,6 +211,6 @@ if (commandName === "userinfo") {
 	}
 })
 
-keepAlive(); 
+//keepAlive(); 
 client.login(process.env.BOTTOKEN);
 
