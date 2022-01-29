@@ -1,5 +1,5 @@
 
-const keepAlive = require('./server.js');
+//const keepAlive = require('./server.js');
 
 
 const { Client, Collection } = require("discord.js");
@@ -22,6 +22,6 @@ client.config = require("./config.json");
 // Initializing the project
 require("./handler")(client);
 
-keepAlive(); 
+//keepAlive(); 
 client.login(process.env.BOTTOKEN);
 
