@@ -4,7 +4,7 @@ client.on("interactionCreate", async (interaction) => {
     // Slash Command Handling
     
     if (interaction.isCommand()) {
-        await interaction.deferReply({ ephemeral: true }).catch(() => {});
+        await interaction.deferReply({ ephemeral: false }).catch(() => {});
 
         const cmd = client.slashCommands.get(interaction.commandName);
         if (!cmd)
@@ -27,7 +27,7 @@ client.on("interactionCreate", async (interaction) => {
 
     // Context Menu Handling
     if (interaction.isContextMenu()) {
-        await interaction.deferReply({ ephemeral: true });
+        await interaction.deferReply({ ephemeral: false });
         const command = client.slashCommands.get(interaction.commandName);
         if (command) command.execute(client, interaction);
     }
