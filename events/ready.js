@@ -7,7 +7,7 @@ client.on('ready', async() => {
     let servercount = await client.guilds.cache.reduce((a,b) => a+b.memberCount, 0 )
   
   const activities = [
-    `${prefix}helpinfo`, 
+    `${prefix}help`, 
     `Watching over ${servers} servers`,
     `Watching ${servercount} members`,
     `The prefix is ${prefix}`
