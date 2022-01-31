@@ -9,7 +9,7 @@ client.on('ready', async() => {
   const activities = [
     `${prefix}help`, 
     `Watching over ${servers} servers`,
-    `Watching ${servercount} members`,
+    `Watching ${servercount} people`,
     `The prefix is ${prefix}`
   ]
   
