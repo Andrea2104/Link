@@ -3,14 +3,7 @@ const { prefix } = require('../config.json');
 
 
 client.on('messageCreate', async(message) => {
-    if(message.mentions.members.size)
-    {
-      if(message.mentions.members.first().id === client.user.id)
-     {
-         message.lineReply("My prefix is `"+ prefix+ "`, type `"+ prefix+"help` for commands and `"+ prefix+"helpinfo` for description of commands"); 
-     }
-    }
-   
+    
     if (!message.content.startsWith(prefix) || message.author.bot) return;
   
     const args = message.content.slice(prefix.length).split(/ +/);
