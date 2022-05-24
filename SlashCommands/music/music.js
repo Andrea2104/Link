@@ -82,7 +82,7 @@ module.exports = {
 
                 case "play" : {
                     client.distube.play( VoiceChannel, interaction.options.getString("query"), { textChannel: channel, member: member});
-                    return interaction.followUp({content: "<:DiscoDJ:937195672908746774> Request Recieved"})
+                    return interaction.followUp({content: "<a:DiscoDJ:937195672908746774> Request Recieved"})
                     
                 }
                 case "volume" : {
